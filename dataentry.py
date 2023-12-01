@@ -372,7 +372,7 @@ elif action == "View All Omzet":
         expander.write(vendor_data)
     with dwn1:
         st.download_button("Get Data", data = vendor_data.to_csv().encode("utf-8"),
-        file_name="TotalSalesZone2000.csv", mime="text/csv")
+                           file_name="RetailerSales.csv", mime="text/csv")
 
 # Delete
 # elif action == "Delete":
