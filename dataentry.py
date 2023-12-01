@@ -361,7 +361,7 @@ elif action == "View All Omzet":
 
     # sumlist = [col4, col5, col6]
 
-   st.dataframe(selection_query)
+    st.dataframe(selection_query)
     "---"
     st.text("List Omzet Semua Cabang By Range Tanggal")
     st.dataframe(existing_data)
