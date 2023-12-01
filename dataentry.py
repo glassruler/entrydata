@@ -361,17 +361,18 @@ elif action == "View All Omzet":
 
     # sumlist = [col4, col5, col6]
 
-    st.dataframe(selection_query)
-
+   st.dataframe(selection_query)
+    "---"
+    st.text("List Omzet Semua Cabang By Range Tanggal")
+    st.dataframe(existing_data)
     view1, dwn1 = st.columns((2))
     with view1:
-        expander = st.expander("Sales by Branch")
+        expander = st.expander("Summary Total by Range Tanggal")
         vendor_data = existing_data[["NamaToko","Zone", "ZoneVIP", "Total"]].groupby(by="NamaToko")["Total"].sum()
         expander.write(vendor_data)
     with dwn1:
         st.download_button("Get Data", data = vendor_data.to_csv().encode("utf-8"),
-                           file_name="RetailerSales.csv", mime="text/csv")
-    # st.dataframe(existing_data)
+        file_name="TotalSalesZone2000.csv", mime="text/csv")
 
 # Delete
 # elif action == "Delete":
