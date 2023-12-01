@@ -118,7 +118,7 @@ BUSINESS_TYPES = [
 "Ponorogo (ZD-44)",
 "Tulungagung (ZD-47)",
 "Ubud Bali",
-
+"TES INPUT",
 ]
 
 # Establishing a Google Sheets connection
