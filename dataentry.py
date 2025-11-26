@@ -125,8 +125,12 @@ BUSINESS_TYPES = [
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Fetch existing Omzet data
-existing_data = conn.read(worksheet="Omzet", usecols=list(range(25)), ttl=5)
-existing_data = existing_data.dropna(how="all")
+# existing_data = conn.read(worksheet="Omzet", usecols=list(range(25)), ttl=5)
+# existing_data = existing_data.dropna(how="all")
+
+existing_data = conn.read(ttl=5)
+st.write(existing_data.head())
+
 
 
 
@@ -408,3 +412,4 @@ elif action == "View All Omzet":
 
 #         conn.update(worksheet="Omzet", data=existing_data)
 #         st.success("Vendor successfully deleted!")
+
