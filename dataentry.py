@@ -1,6 +1,7 @@
-import streamlit as st
-from streamlit_gsheets import GSheetsConnection
+import requests
+import io
 import pandas as pd
+import streamlit as st
 
 # Display Title and Description
 st.title("Omzet Data Entry Zone2000")
@@ -416,6 +417,7 @@ elif action == "View All Omzet":
 
 #         conn.update(worksheet="Omzet", data=existing_data)
 #         st.success("Vendor successfully deleted!")
+
 
 
 
