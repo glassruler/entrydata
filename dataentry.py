@@ -123,7 +123,7 @@ BUSINESS_TYPES = [
 ]
 
 # Establishing a Google Sheets connection
-conn = st.connection("gsheets", type=GSheetsConnection)
+# conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Fetch existing Omzet data
 # existing_data = conn.read(worksheet="Omzet", usecols=list(range(25)), ttl=5)
@@ -433,6 +433,7 @@ elif action == "View All Omzet":
 
 #         conn.update(worksheet="Omzet", data=existing_data)
 #         st.success("Vendor successfully deleted!")
+
 
 
 
