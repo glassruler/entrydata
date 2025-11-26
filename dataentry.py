@@ -131,10 +131,10 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 import pandas as pd
 
 CSV_URL = "https://docs.google.com/spreadsheets/d/161wWNp2YmhHaqJUbxcD6P6Qim0UvruAbVJThJXCsefg/gviz/tq?tqx=out:csv"
-existing_data = pd.read_csv(CSV_URL)
-existing_data = existing_data.dropna(how="all")
 
-
+existing_data = pd.read_csv(CSV_URL, on_bad_lines='skip', encoding='utf-8')
+st.write("✅ Loaded rows:", len(existing_data))
+st.dataframe(existing_data.head())
 
 
 
@@ -416,5 +416,6 @@ elif action == "View All Omzet":
 
 #         conn.update(worksheet="Omzet", data=existing_data)
 #         st.success("Vendor successfully deleted!")
+
 
 
