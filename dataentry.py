@@ -268,9 +268,11 @@ if action == "Input Data Omzet":
                     ]
                 )
                 updated_df = pd.concat([existing_data, vendor_data], ignore_index=True)
+                 
 
                 conn.update(worksheet="Omzet", data=updated_df)
                 st.success("Simpan Data Berhasil!")
+                st.dataframe(updated_df.tail())
 
 elif action == "Update Data":
     st.markdown("Select a vendor and update their details.")
@@ -433,6 +435,7 @@ elif action == "View All Omzet":
 
 #         conn.update(worksheet="Omzet", data=existing_data)
 #         st.success("Vendor successfully deleted!")
+
 
 
 
