@@ -129,13 +129,29 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 # existing_data = conn.read(worksheet="Omzet", usecols=list(range(25)), ttl=5)
 # existing_data = existing_data.dropna(how="all")
 
-import pandas as pd
-
 CSV_URL = "https://docs.google.com/spreadsheets/d/161wWNp2YmhHaqJUbxcD6P6Qim0UvruAbVJThJXCsefg/gviz/tq?tqx=out:csv"
 
-existing_data = pd.read_csv(CSV_URL, on_bad_lines='skip', encoding='utf-8')
-st.write("✅ Loaded rows:", len(existing_data))
-st.dataframe(existing_data.head())
+try:
+    response = requests.get(CSV_URL)
+    response.raise_for_status()
+    csv_text = response.text.strip()
+
+    # remove Google Sheets security header if present
+    if csv_text.startswith(")]}'"):
+        csv_text = "\n".join(csv_text.split("\n")[1:])
+
+    # ensure clean UTF-8
+    data = io.StringIO(csv_text)
+    existing_data = pd.read_csv(data, on_bad_lines="skip", encoding="utf-8")
+
+    # remove empty rows
+    existing_data = existing_data.dropna(how="all")
+    st.success(f"✅ Loaded {len(existing_data)} rows from Google Sheets")
+    st.dataframe(existing_data.head())
+
+except Exception as e:
+    st.error(f"❌ Failed to load Google Sheet: {e}")
+
 
 
 
@@ -417,6 +433,7 @@ elif action == "View All Omzet":
 
 #         conn.update(worksheet="Omzet", data=existing_data)
 #         st.success("Vendor successfully deleted!")
+
 
 
 
