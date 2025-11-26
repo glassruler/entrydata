@@ -2,6 +2,8 @@ import requests
 import io
 import pandas as pd
 import streamlit as st
+from streamlit_gsheets import GSheetsConnection
+
 
 # Display Title and Description
 st.title("Omzet Data Entry Zone2000")
@@ -128,6 +130,7 @@ BUSINESS_TYPES = [
 # Fetch existing Omzet data
 # existing_data = conn.read(worksheet="Omzet", usecols=list(range(25)), ttl=5)
 # existing_data = existing_data.dropna(how="all")
+conn = st.connection("gsheets", type=GSheetsConnection)
 
 CSV_URL = "https://docs.google.com/spreadsheets/d/161wWNp2YmhHaqJUbxcD6P6Qim0UvruAbVJThJXCsefg/gviz/tq?tqx=out:csv"
 
@@ -433,6 +436,7 @@ elif action == "View All Omzet":
 
 #         conn.update(worksheet="Omzet", data=existing_data)
 #         st.success("Vendor successfully deleted!")
+
 
 
 
