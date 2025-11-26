@@ -270,9 +270,15 @@ if action == "Input Data Omzet":
                         }
                     ]
                 )
+                CSV_URL = "https://docs.google.com/spreadsheets/d/161wWNp2YmhHaqJUbxcD6P6Qim0UvruAbVJThJXCsefg/gviz/tq?tqx=out:csv"
+                
                 updated_df = pd.concat([existing_data, vendor_data], ignore_index=True)
-                conn.update(worksheet="Omzet", data=updated_df)
-                st.success("Simpan Data Berhasil!")
+                try:
+                    conn.update(worksheet="Omzet", data=updated_df)
+                    st.success("✅ Simpan Data Berhasil! (saved to Google Sheets)")
+                except Exception as e:
+                    st.error(f"❌ Gagal menyimpan ke Google Sheets: {e}")
+
                 st.dataframe(updated_df.tail())
 
 elif action == "Update Data":
@@ -436,6 +442,7 @@ elif action == "View All Omzet":
 
 #         conn.update(worksheet="Omzet", data=existing_data)
 #         st.success("Vendor successfully deleted!")
+
 
 
 
